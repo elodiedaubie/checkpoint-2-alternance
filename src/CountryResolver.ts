@@ -10,6 +10,11 @@ export class CountryResolver {
   }
   @Mutation(() => Country)
   async createCountry(@Arg("data") data: CountryInput): Promise<Country> {
+    const country = await datasource
+      .getRepository(Country)
+      .findOne({ where: { name: data.name } });
+    if (country !== null) throw new Error("Country already exists");
+
     return await datasource.getRepository(Country).save(data);
   }
 
