@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import { Country } from "./entities/Country";
+import Country from "./entities/Country";
 
 export default new DataSource({
   type: "sqlite",
